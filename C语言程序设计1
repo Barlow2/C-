@@ -1,0 +1,93 @@
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#include<conio.h>
+
+#define N 7
+
+  
+	  int player_select()
+   {
+	   int ch;
+	   printf("\t请输入您的选择： \n");
+	   printf("\t 1-石头\n");
+	   printf("\t 2-剪刀\n");
+	   printf("\t 3-布  \n");
+	   scanf_s("%d",&ch);
+	  return ch;
+   }
+   
+
+   void main()
+   {
+	 char name[10];
+	 int i,j,k,n,ch,cp,win=0,lose=0,ping=0;
+	 int player_select();
+    srand((unsigned)time( NULL ));
+
+	for(k=1;k<=N;k++){
+	    for(i=1;i<=k;i++){
+	   printf("请输入第%d个玩家的姓名: ",i);
+	   scanf("%s",name);}
+
+
+
+	 printf("欢迎来到游戏环节，请输入您的选择n，1-代表参与游戏,0-代表退出游戏\n");
+	 printf("输入n<0,1>: "); 
+	 scanf("%d",&n);
+
+	 switch(n){
+	 case 0:
+		 {printf("\n退出游戏\n"); exit(0);}
+	 case 1:{printf("\t------剪刀石头布游戏现在开始------\n");break;}
+	 default: {printf("\t输入有误,请重新选择！\n");  scanf("%d",&n);}
+	 }
+	
+	 for(j=1;j<=N;j++){
+		 printf("第%d局游戏开始",j);
+
+	 
+		while((ch=player_select())!=0){
+		 switch(ch){
+		    case 1:printf("石头VS "); break;
+		    case 2:printf("剪刀VS "); break;
+		    case 3:printf("布  VS "); break;
+		    default:printf("\t输入有误,请重新选择！\n");  break;
+		 }
+		
+		  cp=rand()%3;
+		 switch(cp){
+		    case 1:printf("石头 "); break;
+		    case 2:printf("剪刀 "); break;
+		    case 3:printf("布   "); break;
+		 }
+	 
+	    switch(ch-cp){
+            case -1:
+		    case  2:win++; printf("\t第%d局游戏，玩家获胜!\n",j); break;
+			case -2:
+			case  1:lose++; printf("\t第%d局游戏，电脑获胜!\n",j);  break;
+			case  0:ping++; printf("\t第%d局游戏，双方打成平手!\n",j); break;
+		}
+		
+        if((win>=4)||(lose>=4))  {  printf("\t游戏结束\n");exit(0);}
+		else break;
+		}
+	     
+	}
+		
+	 while((win>=4)||(lose>=4)){
+		if(win>lose){  printf("\t游戏最终结果是：玩家获胜!\n");}
+		    else if(win<lose) { printf("\t游戏最终结果是：电脑获胜!\n");}
+			else  {printf("\t游戏最终结果是：双方平手\n");}
+	 
+	 }
+	 
+ 
+ printf("\n\n\n");
+
+	printf("\t\t-------------------Total-------------------\n");
+	printf("\t\t|             游戏统计结果                 |\n");
+	printf("\t\t|            游戏总共进行了%d次            | \n",win+lose+ping);
+	printf("\t\t-------------------------------------------\n");
+	printf("\t\t|  玩家赢了         |       %d次           |\n",win
